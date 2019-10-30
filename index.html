@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,23 +7,30 @@
   <title>Annual Leave Calculator</title>
   <meta name="description" content="A simple annual leave calculator">
   <style>
-    body {
-      padding: 30px 10px;
-      line-height: 2;
+    * {
+      box-sizing: border-box;
     }
 
-    p {
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      line-height: 2;
       margin: 0 auto;
+      max-width: 80%;
+      padding: 0;
     }
 
     p, input, select {
       font-family: Arial, Helvetica, sans-serif;
       font-size: 20px;
       text-align: center;
-    }
-
-    #q {
-      margin-bottom: 60px;
+      margin: 0;
+      padding: 0;
     }
 
     input, select {      
@@ -33,7 +40,6 @@
 
     #a {
       line-height: 1.5;
-      margin-bottom: 40px;
     }
 
     #output {
@@ -41,23 +47,26 @@
       font-size: 25px;
     }
 
-    #s, #s input {
-      color: #333;
+    #s p, #s input {
       font-size: 14px;
-      line-height: normal;
+      line-height: 1.5;
+    }
+
+    #s p:first-child {
+      margin-bottom: 5px;
     }
 
     @media only screen and (min-width: 992px) {
-      p {
-        max-width: 80%;
-      }
-
       p, input, select {
         font-size: 40px;
       }
 
-      #s, #s input {
+      #s p, #s input {
         font-size: 18px;
+      }
+
+      #output {
+        font-size: 45px;
       }
     }
   </style>
@@ -79,19 +88,24 @@
     <span id="output">---</span>
     days!
   </p>
-  <p id="s">
-    <small>
-      Based on
-      <input value="20" type="text" size="2" id="annual-leave-days-per-year">
-      annual leave days per year, a
-      <input value="38" type="text" size="2" id="work-hours-per-week">
-      hour (5 day) work week, and
-      <input value="365.25" type="text" size="5" id="days-per-year">
-      days per year.
-      <br>
-      Nothing official, could be wrong, use at own risk.
-    </small>
-  </p>
+  <div id="s">
+    <p>
+      <small>
+        Based on
+        <input value="20" type="text" size="2" id="annual-leave-days-per-year">
+        annual leave days per year, a
+        <input value="38" type="text" size="2" id="work-hours-per-week">
+        hour (5 day) work week, and
+        <input value="365.25" type="text" size="5" id="days-per-year">
+        days per year.
+      </small>
+    </p>
+    <p>
+      <small>
+        Nothing official, could be wrong, use at own risk.
+      </small>
+    </p>
+  </div>
   <script>
     const daysPerYear = document.getElementById('days-per-year');
     const getDaysPerYear = () => parseInt(daysPerYear.value);
@@ -127,6 +141,13 @@
     [...inputs].forEach(i => {
       document.addEventListener('input', calculate);
     });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-81824436-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-81824436-1');
   </script>
 </body>
 </html>
