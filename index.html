@@ -129,7 +129,10 @@
         const daysGot = parseInt(lastPayslipHours.value) / getWorkHoursPerDay();
         const daysUsed = parseInt(daysBeforeThen.value);
         const result = daysGot + daysEarnt - daysUsed;
-        output.innerText = Math.round(result * 100) / 100;
+        const resultRounded = Math.round(result * 100) / 100;
+        if (resultRounded !== NaN) {
+          output.innerText = resultRounded;
+        }
       }
       catch 
       {
