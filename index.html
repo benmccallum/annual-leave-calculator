@@ -105,6 +105,11 @@
         Nothing official, could be wrong, use at own risk.
       </small>
     </p>
+    <p>
+      <a href="https://www.buymeacoffee.com/benmccallum" target="_blank">
+        <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" >
+      </a>
+    </p>
   </div>
   <script>
     const daysPerYear = document.getElementById('days-per-year');
@@ -122,6 +127,7 @@
 
     const output = document.getElementById('output');
     const calculate = () => {
+      let finalResult = '---';
       try
       {
         const daysBetween = (futureDate.valueAsNumber - lastPayslipDate.valueAsNumber) / (24 * 3600 * 1000);
@@ -130,14 +136,15 @@
         const daysUsed = parseInt(daysBeforeThen.value);
         const result = daysGot + daysEarnt - daysUsed;
         const resultRounded = Math.round(result * 100) / 100;
-        if (resultRounded !== NaN) {
-          output.innerText = resultRounded;
+        if (!Number.isNaN(resultRounded)) {
+          finalResult = resultRounded;
         }
       }
       catch 
       {
-        output.innerText = "...";
+        
       }
+      output.innerText = finalResult;
     };
 
     const inputs = document.getElementsByTagName('input');
